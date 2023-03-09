@@ -18,7 +18,7 @@ export const restaurantSlice = createSlice({
   },
   reducers: {
     setRestaurant: (state, action) => {
-      state.items = action.payload;
+      state.restaurant = action.payload;
     },
   },
 });

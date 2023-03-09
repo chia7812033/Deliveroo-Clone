@@ -12,6 +12,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import Basket from "../components/Basket";
 import DishCard from "../components/DishCard";
 import { QuestionMarkCircleIcon } from "react-native-heroicons/outline";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { selectBasketItems } from "../features/basketSlice";
 import { setRestaurant } from "../features/reastaurantSlice";
 import { urlFor } from "../sanity";
@@ -61,7 +62,7 @@ const RestaurantScreen = () => {
   }, [dispatch])
 
   return (
-    <>
+    <SafeAreaView>
       {items.length > 0 && <Basket/>}
 
       <ScrollView>
@@ -126,7 +127,7 @@ const RestaurantScreen = () => {
           ))}
         </View>
       </ScrollView>
-    </>
+    </SafeAreaView>
   );
 };
 
