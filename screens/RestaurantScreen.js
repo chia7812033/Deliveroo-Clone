@@ -8,6 +8,7 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
+import DishCard from "../components/DishCard";
 import { QuestionMarkCircleIcon } from "react-native-heroicons/outline";
 import { urlFor } from "../sanity";
 
@@ -85,6 +86,17 @@ const RestaurantScreen = () => {
 
       <View>
         <Text className='px-4 pt-6 mb-3 font-bold text-xl'>Menu</Text>
+
+        {dishes.map((dish) => (
+          <DishCard
+            key={dish._id}
+            id={dish._id}
+            name={dish.name}
+            short_description={dish.short_description}
+            price={dish.price}
+            imgUrl={dish.image}
+          />
+        ))}
       </View>
     </ScrollView>
   );
