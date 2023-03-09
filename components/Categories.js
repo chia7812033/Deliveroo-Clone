@@ -1,46 +1,40 @@
-import React, { Component } from "react";
-import { ScrollView, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import sanityClient, { urlFor } from "../sanity";
 
 import CategoryCard from "./CategoryCard";
+import { ScrollView } from "react-native";
 
-export class Categories extends Component {
-  render() {
-    return (
-      <ScrollView
-        contentContainerStyle={{
-          paddingHorizontal: 15,
-          paddingTop: 10,
-        }}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-      >
+const Categories = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `*[_type == 'category' ] {
+            ...,
+        }`
+      )
+      .then((data) => setCategories(data));
+  }, []);
+
+  return (
+    <ScrollView
+      contentContainerStyle={{
+        paddingHorizontal: 15,
+        paddingTop: 10,
+      }}
+      horizontal
+      showsHorizontalScrollIndicator={false}
+    >
+      {categories?.map((cat) => (
         <CategoryCard
-          imgUrl='https://links.papareact.com/gn7'
-          title='Testing 1'
+          key={cat._id}
+          imgUrl={urlFor(cat.image).url()}
+          title={cat.name}
         />
-        <CategoryCard
-          imgUrl='https://links.papareact.com/gn7'
-          title='Testing 2'
-        />
-        <CategoryCard
-          imgUrl='https://links.papareact.com/gn7'
-          title='Testing 3'
-        />
-        <CategoryCard
-          imgUrl='https://links.papareact.com/gn7'
-          title='Testing 4'
-        />
-        <CategoryCard
-          imgUrl='https://links.papareact.com/gn7'
-          title='Testing 5'
-        />
-        <CategoryCard
-          imgUrl='https://links.papareact.com/gn7'
-          title='Testing 6'
-        />
-      </ScrollView>
-    );
-  }
-}
+      ))}
+    </ScrollView>
+  );
+};
 
 export default Categories;
