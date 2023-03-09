@@ -1,6 +1,7 @@
 import "react-native-url-polyfill/auto";
 
 import BasketScreen from "./screens/BasketScreen";
+import DeliveryScreen from "./screens/DeliveryScreen";
 import HomeScreen from "./screens/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import PreparingOrderScreen from "./screens/PreparingOrderScreen";
@@ -26,6 +27,11 @@ export default function App() {
           <Stack.Screen
             name='PreparingOrder'
             component={PreparingOrderScreen}
+            options={{ presentation: "fullScreenModal", headerShown: false }}
+          />
+          <Stack.Screen
+            name='Delivery'
+            component={DeliveryScreen}
             options={{ presentation: "fullScreenModal", headerShown: false }}
           />
         </Stack.Navigator>
