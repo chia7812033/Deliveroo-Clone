@@ -40,7 +40,7 @@ const RestaurantCard = ({
     >
       <Image
         source={{ uri: urlFor(imgUrl).url() }}
-        className='h-36 w-64 rounded-sm'
+        className='h-36 w-64 rounded-sm' 
       />
 
       <View className='px-3 pb-4'>
